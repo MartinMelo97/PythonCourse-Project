@@ -53,12 +53,14 @@ class Main:
     def handle_auth_menu_options(self):
         opts = {
             '1': self.login,
-            '2': self.register
+            '2': self.register,
+            '3': self.exit
         }
         opts[str(self.auth_selection)]()
 
     def handle_restaurant_menu_options(self):
         opts = {
+            '5': self.show_profile,
             '7': self.logout
         }
         opts[str(self.restaurant_selection)]()
@@ -107,6 +109,19 @@ class Main:
             self.set_user(None)
             print('Cerrarse sesión correctamente')
 
+    def exit(self):
+        self.program_selection = 1
+
+    def show_profile(self):
+        print()
+        print('Perfil de usuario')
+        print(f'ID: {self.user[0]}' )
+        print(f'Nombre: {self.user[1]}')
+        print(f'Apellidos: {self.user[2]}')
+        print(f'Correo electrónico: {self.user[3]}')
+        print(f'Teléfono: {self.user[4]}',)
+        print()
+
     def set_user(self, user):
         self.user = user
 
@@ -118,7 +133,7 @@ class Main:
             else:
                 self.show_auth_menu()
                 self.handle_user_auth_selection()
-
+        print("Hasta luego!")
 
 main = Main()
 main.entrypoint()
